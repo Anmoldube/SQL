@@ -1,0 +1,90 @@
+// How to create the table
+CREATE TABLE std(
+  std VARCHAR(20),
+  Major VARCHAR(20),
+  Std_id INT,
+  PRIMARY KEY(Std_id)
+  );
+
+The error Error: near "DESCRIBE": syntax error occurs because the DESCRIBE command is not supported in SQLite, which is commonly the database where this error is encountered.
+
+To achieve similar functionality (viewing the structure of a table) in SQLite, you can use one of the following methods:
+
+Method 1: Use the .schema Command
+If you're using the SQLite command line, you can use:
+
+.schema Std
+This will display the SQL used to create the table Std, showing its structure.
+
+Method 2: Use PRAGMA table_info
+You can execute the following SQL command:
+
+PRAGMA table_info(Std);
+This will display a list of columns in the Std table, along with details such as column name, type, and constraints.
+
+Method 3: Query sqlite_master
+You can also retrieve table information by querying the sqlite_master table:
+
+SELECT sql 
+FROM sqlite_master 
+WHERE type='table' AND name='Std';
+This retrieves the SQL statement used to create the Std table.
+
+// To drop the tuple we use 
+DROP TABLE Std;      
+
+// FOR COLUNM  ===>  ALTER TABLE stD DROP COLUMN gpa; 
+
+// Inserting Data into Student Table 
+INSERT INTO _Name of the table_ VALUES('Anmol', 'CSE', 1);
+
+// Show table data 
+SELECT * FROM Std;
+
+// deleting from row 
+DELETE FROM std WHERE Std_id = 5;
+
+// update and delete
+UPDATE Std
+SET major = 'bio'
+WHERE major = 'CSE';
+
+SELECT std
+FROM std;
+
+SELECT std, Major
+FROM Std
+ORDER BY std DESC;
+
+ SELECT std, major
+ FROM std
+ WHERE major  = "CSE" OR major = 'bio';
+
+// If we want by definded name 
+SELECT first_name AS ForNaam, last_name AS surname
+From employee;
+
+Find out all the different gender
+SELECT DISTINCT sex
+From Employee;
+
+
+SELECT COUNT(emp_id)
+From Employee
+WHERE sex = 'F' AND birth_day > '1970-01-01';
+
+Select Avg(salary)
+From employee;
+
+Select SUM(salary)
+From employee
+Where sex = 'M';
+
+Ques:-  the count of male and female individual
+SELECT COUNT(SEX), sex
+From employee
+Group by sex;
+
+Select sum(total_sales), emp_id
+FROM works_with
+group BY emp_id;
